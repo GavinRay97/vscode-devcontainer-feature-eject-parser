@@ -19,90 +19,91 @@ ARG VARIANT="hirsute"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 # docker-in-docker
-EXPORT _VSC_INSTALL_DOCKER_IN_DOCKER=true
-EXPORT _BUILD_ARG_DOCKER_IN_DOCKER_VERSION=latest
+ENV _VSC_INSTALL_DOCKER_IN_DOCKER=true
+ENV _BUILD_ARG_DOCKER_IN_DOCKER_VERSION=latest
 
 # docker-from-docker
-EXPORT _VSC_INSTALL_DOCKER_FROM_DOCKER=true
-EXPORT _BUILD_ARG_DOCKER_FROM_DOCKER_VERSION=latest
+ENV _VSC_INSTALL_DOCKER_FROM_DOCKER=true
+ENV _BUILD_ARG_DOCKER_FROM_DOCKER_VERSION=latest
 
 # kubectl-helm-minikube
-EXPORT _VSC_INSTALL_KUBECTL_HELM_MINIKUBE=true
-EXPORT _BUILD_ARG_KUBECTL_HELM_MINIKUBE_VERSION=1.22
+ENV _VSC_INSTALL_KUBECTL_HELM_MINIKUBE=true
+ENV _BUILD_ARG_KUBECTL_HELM_MINIKUBE_VERSION=1.22
 
 # terraform
-EXPORT _VSC_INSTALL_TERRAFORM=true
-EXPORT _BUILD_ARG_TERRAFORM_VERSION=1.0
+ENV _VSC_INSTALL_TERRAFORM=true
+ENV _BUILD_ARG_TERRAFORM_VERSION=1.0
 
 # git
-EXPORT _VSC_INSTALL_GIT=true
-EXPORT _BUILD_ARG_GIT_VERSION=latest
+ENV _VSC_INSTALL_GIT=true
+ENV _BUILD_ARG_GIT_VERSION=latest
 
 # git-lfs
-EXPORT _VSC_INSTALL_GIT_LFS=true
-EXPORT _BUILD_ARG_GIT_LFS_VERSION=latest
+ENV _VSC_INSTALL_GIT_LFS=true
+ENV _BUILD_ARG_GIT_LFS_VERSION=latest
 
 # github-cli
-EXPORT _VSC_INSTALL_GITHUB_CLI=true
-EXPORT _BUILD_ARG_GITHUB_CLI_VERSION=latest
+ENV _VSC_INSTALL_GITHUB_CLI=true
+ENV _BUILD_ARG_GITHUB_CLI_VERSION=latest
 
 # azure-cli
-EXPORT _VSC_INSTALL_AZURE_CLI=true
-EXPORT _BUILD_ARG_AZURE_CLI_VERSION=latest
+ENV _VSC_INSTALL_AZURE_CLI=true
+ENV _BUILD_ARG_AZURE_CLI_VERSION=latest
 
 # sshd
-EXPORT _VSC_INSTALL_SSH=true
-EXPORT _BUILD_ARG_SSHD_VERSION=latest
+ENV _VSC_INSTALL_SSH=true
+ENV _BUILD_ARG_SSHD_VERSION=latest
 
 # desktop-lite
-EXPORT _VSC_INSTALL_DESKTOP_LITE=true
-EXPORT _BUILD_ARG_DESKTOP_LITE_VERSION=latest
+ENV _VSC_INSTALL_DESKTOP_LITE=true
+ENV _BUILD_ARG_DESKTOP_LITE_VERSION=latest
 
 # homebrew
-EXPORT _VSC_INSTALL_HOMEBREW=true
-EXPORT _BUILD_ARG_HOMEBREW_VERSION=latest
+ENV _VSC_INSTALL_HOMEBREW=true
+ENV _BUILD_ARG_HOMEBREW_VERSION=latest
 
 # node
-EXPORT _VSC_INSTALL_NODE=true
-EXPORT _BUILD_ARG_NODE_VERSION=14
+ENV _VSC_INSTALL_NODE=true
+ENV _BUILD_ARG_NODE_VERSION=14
 
 # python
-EXPORT _VSC_INSTALL_PYTHON=true
-EXPORT _BUILD_ARG_PYTHON_VERSION=3.10
+ENV _VSC_INSTALL_PYTHON=true
+ENV _BUILD_ARG_PYTHON_VERSION=3.10
 
 # golang
-EXPORT _VSC_INSTALL_GOLANG=true
-EXPORT _BUILD_ARG_GOLANG_VERSION=latest
+ENV _VSC_INSTALL_GOLANG=true
+ENV _BUILD_ARG_GOLANG_VERSION=latest
 
 # java
-EXPORT _VSC_INSTALL_JAVA=true
-EXPORT _BUILD_ARG_JAVA_VERSION=17
+ENV _VSC_INSTALL_JAVA=true
+ENV _BUILD_ARG_JAVA_VERSION=17
 
 # maven
-EXPORT _VSC_INSTALL_MAVEN=true
-EXPORT _BUILD_ARG_MAVEN_VERSION=3.8
+ENV _VSC_INSTALL_MAVEN=true
+ENV _BUILD_ARG_MAVEN_VERSION=3.8
 
 # gradle
-EXPORT _VSC_INSTALL_GRADLE=true
-EXPORT _BUILD_ARG_GRADLE_VERSION=7
+ENV _VSC_INSTALL_GRADLE=true
+ENV _BUILD_ARG_GRADLE_VERSION=7
 
 # ruby
-EXPORT _VSC_INSTALL_RUBY=true
-EXPORT _BUILD_ARG_RUBY_VERSION=3.0
+ENV _VSC_INSTALL_RUBY=true
+ENV _BUILD_ARG_RUBY_VERSION=3.0
 
 # rust
-EXPORT _VSC_INSTALL_RUST=true
-EXPORT _BUILD_ARG_RUST_VERSION=1.55
+ENV _VSC_INSTALL_RUST=true
+ENV _BUILD_ARG_RUST_VERSION=1.55
 
 # powershell
-EXPORT _VSC_INSTALL_POWERSHELL=true
-EXPORT _BUILD_ARG_POWERSHELL_VERSION=7.1
+ENV _VSC_INSTALL_POWERSHELL=true
+ENV _BUILD_ARG_POWERSHELL_VERSION=7.1
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive  \
     && apt-get -y install --no-install-recommends curl ca-certificates \
     && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/common-debian.sh")" \
         && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/docker-in-docker-debian.sh")" \
-        && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/kubectl-helm-minikube-debian        && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/kubectl-helm-minikube-debian.sh")" \
+        && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/docker-from-docker-debian.sh")" \
+        && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/kubectl-helm-minikube-debian.sh")" \
         && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/terraform-debian.sh")" \    
         && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/git-debian.sh")" \
         && bash -c "$(curl -fsSL "https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/git-lfs-debian.sh")" \      

@@ -14,9 +14,9 @@ function makeEnvExportsForFeature(feature: Feature, version: string) {
   return (
     `# ${feature.id}` +
     "\n" +
-    `EXPORT ${feature.buildArg}=true` +
+    `ENV ${feature.buildArg}=true` +
     "\n" +
-    `EXPORT _BUILD_ARG_${snakeCase(feature.id).toUpperCase()}_VERSION=${version}`
+    `ENV _BUILD_ARG_${snakeCase(feature.id).toUpperCase()}_VERSION=${version}`
   )
 }
 
